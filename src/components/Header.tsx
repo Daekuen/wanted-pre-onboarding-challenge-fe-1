@@ -4,7 +4,7 @@ import { RiLoginCircleFill } from 'react-icons/ri';
 
 export default function Header() {
   return (
-    <header className="max-w-4xl h-10 flex m-auto justify-between py-2 px-1 bg-green-600 text-gray-200 rounded-md">
+    <header className="max-w-4xl h-10 flex m-auto justify-between py-2 px-5 bg-green-600 text-gray-200 rounded-md">
       <div className="flex items-center text-3xl font-bold">
         <FcTodoList className="mr-2" />
         <span>Todo-List</span>
