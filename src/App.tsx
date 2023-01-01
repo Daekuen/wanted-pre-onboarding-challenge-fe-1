@@ -1,17 +1,30 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import Header from './components/Header';
 import Main from './pages/Main';
+import TodoList from './pages/TodoList';
 
 function App() {
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const queryClient = new QueryClient();
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) return;
+
+    setIsLogin(true);
+  });
+
   return (
     <React.Fragment>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/*" element={<Main />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+          <Routes>
+            <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </React.Fragment>
   );
 }
