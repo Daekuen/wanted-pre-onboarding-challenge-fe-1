@@ -7,6 +7,7 @@ import { TodoType } from '../pages/TodoList';
 import api from '../api/customAxios';
 import { QueryClient } from 'react-query';
 import { useQueryClient } from '@tanstack/react-query';
+import Modal from './Modal';
 
 interface ToDoProps {
   todo: TodoType;
@@ -16,6 +17,7 @@ export default function ToDo({ todo }: ToDoProps) {
   const queryClient = useQueryClient();
   const { title, content, id } = todo;
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement | null>(null);
   const handleClick = () => {
@@ -40,7 +42,12 @@ export default function ToDo({ todo }: ToDoProps) {
           <p className="flex-auto ml-4 cursor-pointer">{title}</p>
         </div>
         <div>
-          <span className="mr-3 text-2xl">
+          <span
+            className="mr-3 text-2xl"
+            onClick={() => {
+              setIsOpenModal(!isOpenModal);
+            }}
+          >
             <button type="button" className="cursor-pointer">
               <MdEdit />
             </button>
@@ -52,6 +59,14 @@ export default function ToDo({ todo }: ToDoProps) {
           </span>
         </div>
       </li>
+      {isOpenModal && (
+        <Modal
+          setIsOpenModal={setIsOpenModal}
+          title={title}
+          content={content}
+          id={id}
+        />
+      )}
       <Routes>
         <Route
           path="/:id"
