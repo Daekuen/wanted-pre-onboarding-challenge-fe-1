@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Header from './components/Header';
 import Main from './pages/Main';
 import TodoList from './pages/TodoList';
 
+const queryClient = new QueryClient();
+
 function App() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const queryClient = new QueryClient();
 
   useEffect(() => {
     if (!localStorage.getItem('token')) return;
@@ -24,6 +26,7 @@ function App() {
             <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
           </Routes>
         </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </React.Fragment>
   );

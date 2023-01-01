@@ -3,16 +3,23 @@ import { BsTrashFill } from 'react-icons/bs';
 import { HiChevronDoubleRight } from 'react-icons/hi';
 import { MdEdit } from 'react-icons/md';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { TodoType } from '../pages/TodoList';
 
-export default function ToDo() {
+interface ToDoProps {
+  todo: TodoType;
+}
+
+export default function ToDo({ todo }: ToDoProps) {
+  const { title, content, id } = todo;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement | null>(null);
   const handleClick = () => {
     setIsOpen(!isOpen);
-    if (!isOpen) navigate('/123');
+    if (!isOpen) navigate(`/${id}`);
     if (isOpen) navigate('/');
   };
+  console.log(todo);
   return (
     <>
       <li className="flex justify-between items-center py-3 px-4 my-1 text-gray-200">
@@ -21,7 +28,7 @@ export default function ToDo() {
           onClick={handleClick}
         >
           <HiChevronDoubleRight />
-          <p className="flex-auto ml-4 cursor-pointer"> React 공부</p>
+          <p className="flex-auto ml-4 cursor-pointer">{title}</p>
         </div>
         <div>
           <span className="mr-3 text-2xl">
@@ -38,7 +45,7 @@ export default function ToDo() {
       </li>
       <Routes>
         <Route
-          path="123"
+          path="/:id"
           element={
             isOpen && (
               <div
@@ -46,7 +53,7 @@ export default function ToDo() {
                 ref={contentRef}
               >
                 <p className="font-bold">CONTENT</p>
-                <p className="text-lg">여기가 콘텐츠 적는곳이닷</p>
+                <p className="text-lg">{content}</p>
               </div>
             )
           }
