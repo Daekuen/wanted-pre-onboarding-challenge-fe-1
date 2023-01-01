@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import AddToDo from '../components/AddToDo';
 import ToDo from '../components/ToDo';
 import api from '../api/customAxios';
@@ -26,10 +26,6 @@ export default function TodoList() {
     },
     { refetchOnWindowFocus: false, staleTime: 60 * 1000 * 5 }
   );
-
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
 
   if (isLoading) return <Loading />;
   return (

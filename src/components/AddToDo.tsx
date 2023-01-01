@@ -8,6 +8,7 @@ type Todo = {
 };
 
 export default function AddToDo() {
+  const queryClient = useQueryClient();
   const [todo, setTodo] = useState<Todo>({ title: '', content: '' });
   const addTodoMutation = useMutation(
     async (todo: Todo) => {
@@ -15,7 +16,7 @@ export default function AddToDo() {
     },
     {
       onSuccess: (res) => {
-        window.location.reload();
+        queryClient.invalidateQueries(['todolist']);
         console.log(res);
       },
     }
