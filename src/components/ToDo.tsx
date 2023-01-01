@@ -19,7 +19,6 @@ export default function ToDo({ todo }: ToDoProps) {
     if (!isOpen) navigate(`/${id}`);
     if (isOpen) navigate('/');
   };
-  console.log(todo);
   return (
     <>
       <li className="flex justify-between items-center py-3 px-4 my-1 text-gray-200">

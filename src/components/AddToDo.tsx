@@ -15,6 +15,7 @@ export default function AddToDo() {
     },
     {
       onSuccess: (res) => {
+        window.location.reload();
         console.log(res);
       },
     }
@@ -36,7 +37,6 @@ export default function AddToDo() {
       console.log(error);
     }
   };
-  console.log(todo);
   return (
     <>
       <form
