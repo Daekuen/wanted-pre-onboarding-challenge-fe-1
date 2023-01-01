@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import api from '../api/customAxios';
 import { useNavigate } from 'react-router-dom';
@@ -69,6 +68,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
           className="text-black"
           onSubmit={type === 'create' ? handleSignUp : handleLogin}
         >
+          {/* email */}
           <div className="flex flex-col mb-10 items-center justify-center">
             <div className="flex">
               <label
@@ -96,7 +96,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
                 )}
             </div>
           </div>
-
+          {/* password */}
           <div className="flex flex-col mb-10 items-center justify-center">
             <div className="flex">
               <label
@@ -124,7 +124,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
                 )}
             </div>
           </div>
-
+          {/* submit btn */}
           <div className="mt-5 flex items-end justify-end">
             <button
               type="submit"

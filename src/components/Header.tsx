@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="max-w-4xl h-10 flex m-auto justify-between py-2 px-5 bg-green-600 text-gray-200 rounded-md">
       <div
-        className="flex items-center text-3xl font-bold cursor-pointer"
+        className="flex items-center text-3xl font-bold cursor-pointer rounded-md px-3 py-1 hover:scale-110 hover:ease-in duration-300 hover:bg-gray-200 hover:text-green-600"
         onClick={() => {
           navigate('/');
         }}
@@ -16,11 +16,11 @@ export default function Header() {
         <FcTodoList className="mr-2" />
         <span>Todo-List</span>
       </div>
-      <div className="flex items-center justify-center text-base font-semibold">
+      <div className="flex items-center justify-center text-base font-semibold ">
         <ul className="flex j">
           <li className="mr-3">
             <button
-              className="flex items-center"
+              className="flex items-center rounded-md px-2 py-1 hover:scale-110 hover:ease-in duration-300 hover:bg-gray-200 hover:text-green-600"
               onClick={() => {
                 navigate('/auth/signup');
               }}
@@ -31,7 +31,7 @@ export default function Header() {
           </li>
           <li>
             <button
-              className="flex items-center"
+              className="flex items-center rounded-md px-2 py-1 hover:scale-110 hover:ease-in duration-300 hover:bg-gray-200 hover:text-green-600"
               onClick={() => {
                 navigate('/auth/login');
               }}
