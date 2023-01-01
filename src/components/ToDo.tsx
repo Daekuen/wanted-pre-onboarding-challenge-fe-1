@@ -4,12 +4,16 @@ import { HiChevronDoubleRight } from 'react-icons/hi';
 import { MdEdit } from 'react-icons/md';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { TodoType } from '../pages/TodoList';
+import api from '../api/customAxios';
+import { QueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface ToDoProps {
   todo: TodoType;
 }
 
 export default function ToDo({ todo }: ToDoProps) {
+  const queryClient = useQueryClient();
   const { title, content, id } = todo;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -19,6 +23,12 @@ export default function ToDo({ todo }: ToDoProps) {
     if (!isOpen) navigate(`/${id}`);
     if (isOpen) navigate('/');
   };
+
+  const handleDelete = async () => {
+    await api.delete(`todos/${id}`);
+    queryClient.invalidateQueries(['todolist']);
+  };
+  console.log(todo);
   return (
     <>
       <li className="flex justify-between items-center py-3 px-4 my-1 text-gray-200">
@@ -35,7 +45,7 @@ export default function ToDo({ todo }: ToDoProps) {
               <MdEdit />
             </button>
           </span>
-          <span className="text-2xl">
+          <span className="text-2xl" onClick={handleDelete}>
             <button type="button" className="cursor-pointer">
               <BsTrashFill />
             </button>
