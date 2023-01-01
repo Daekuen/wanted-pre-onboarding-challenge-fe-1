@@ -12,7 +12,7 @@ interface HeaderProps {
 export default function Header({ isLogin, setIsLogin }: HeaderProps) {
   const navigate = useNavigate();
   return (
-    <header className="max-w-4xl h-10 flex m-auto justify-between py-2 px-5 bg-green-600 text-gray-200 rounded-md">
+    <header className="max-w-4xl h-16 flex m-auto justify-between py-2 px-5 bg-green-600 text-gray-200 rounded-md">
       <div
         className="flex items-center text-3xl font-bold cursor-pointer rounded-md px-3 py-1 hover:scale-110 hover:ease-in duration-300 hover:bg-gray-200 hover:text-green-600"
         onClick={() => {
