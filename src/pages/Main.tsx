@@ -1,4 +1,4 @@
-import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import MainUI from '../components/MainUI';
 import SignUpIn from '../components/SignUp-In';
 
@@ -8,8 +8,17 @@ export default function Main() {
       <div className="flex text-6xl mb-20 py-2 font-bold justify-center border-solid border-b-2 border-gray-200 absolute top-20">
         <h1>Todo List</h1>
       </div>
-      {/* <MainUI /> */}
-      <SignUpIn />
+      <Routes>
+        <Route path="/" element={<MainUI />} />
+        <Route
+          path="/auth/signup"
+          element={<SignUpIn title="SIGN UP" type="create" />}
+        />
+        <Route
+          path="/auth/login"
+          element={<SignUpIn title="LOGIN" type="login" />}
+        />
+      </Routes>
     </section>
   );
 }
