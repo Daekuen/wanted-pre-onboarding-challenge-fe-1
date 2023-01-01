@@ -13,7 +13,7 @@ function App() {
     if (!localStorage.getItem('token')) return;
 
     setIsLogin(true);
-  });
+  }, [isLogin]);
 
   return (
     <React.Fragment>

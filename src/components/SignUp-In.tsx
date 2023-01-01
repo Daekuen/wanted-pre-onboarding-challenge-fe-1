@@ -51,6 +51,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
       localStorage.setItem('token', login.data.token);
       setUserInfo({ email: '', password: '' });
       navigate('/');
+      window.location.reload();
     } catch (error) {
       alert('아이디와 비밀번호를 다시 확인해 주세요.');
       console.log(error);

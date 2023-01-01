@@ -33,6 +33,7 @@ export default function Header({ isLogin, setIsLogin }: HeaderProps) {
                     localStorage.removeItem('token');
                     setIsLogin(false);
                     navigate('/');
+                    window.location.reload();
                   }}
                 >
                   <RiLogoutCircleFill className="mr-1" />
