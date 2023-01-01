@@ -2,12 +2,16 @@ import React, { useRef, useState } from 'react';
 import { BsTrashFill } from 'react-icons/bs';
 import { HiChevronDoubleRight } from 'react-icons/hi';
 import { MdEdit } from 'react-icons/md';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 export default function ToDo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement | null>(null);
   const handleClick = () => {
     setIsOpen(!isOpen);
+    if (!isOpen) navigate('/123');
+    if (isOpen) navigate('/');
   };
   return (
     <>
@@ -32,15 +36,22 @@ export default function ToDo() {
           </span>
         </div>
       </li>
-      {isOpen && (
-        <div
-          className="bg-gray-200 text-green-700 p-3 h-28 rounded-b-md"
-          ref={contentRef}
-        >
-          <p className="font-bold">CONTENT</p>
-          <p className="text-lg">여기가 콘텐츠 적는곳이닷</p>
-        </div>
-      )}
+      <Routes>
+        <Route
+          path="123"
+          element={
+            isOpen && (
+              <div
+                className="bg-gray-200 text-green-700 p-3 h-28 rounded-b-md"
+                ref={contentRef}
+              >
+                <p className="font-bold">CONTENT</p>
+                <p className="text-lg">여기가 콘텐츠 적는곳이닷</p>
+              </div>
+            )
+          }
+        />
+      </Routes>
     </>
   );
 }
