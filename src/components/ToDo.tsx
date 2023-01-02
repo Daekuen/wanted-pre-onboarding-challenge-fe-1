@@ -5,7 +5,6 @@ import { MdEdit } from 'react-icons/md';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { TodoType } from '../pages/TodoList';
 import api from '../api/customAxios';
-import { QueryClient } from 'react-query';
 import { useQueryClient } from '@tanstack/react-query';
 import Modal from './Modal';
 
@@ -30,7 +29,6 @@ export default function ToDo({ todo }: ToDoProps) {
     await api.delete(`todos/${id}`);
     queryClient.invalidateQueries(['todolist']);
   };
-  console.log(todo);
   return (
     <>
       <li className="flex justify-between items-center py-3 px-4 my-1 text-gray-200">

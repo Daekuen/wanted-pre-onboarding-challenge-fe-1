@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/customAxios';
 import { useQueryClient } from '@tanstack/react-query';
+import SubmitBtn from './SubmitBtn';
 
 interface ModalProps {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -42,7 +43,12 @@ export default function Modal({
         setIsOpenModal(false);
       }}
     >
-      <div className="absolute w-1/3 h-2/5 bg-green-600 rounded-xl p-8">
+      <div
+        className="absolute w-1/2 h-2/5 bg-green-600 rounded-xl px-16 py-10"
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+          e.stopPropagation();
+        }}
+      >
         <div className="flex justify-center items-center text-4xl font-bold mb-10">
           <p>수정하기</p>
         </div>
@@ -79,7 +85,8 @@ export default function Modal({
           </div>
           <div className="flex items-center justify-center mt-5">
             <button
-              className="px-5 py-1 bg-gray-200 text-green-600 font-semibold mr-5 rounded-md hover:scale-110 hover:ease-in duration-300"
+              type="button"
+              className="py-1 px-2 w-24 bg-gray-200 text-green-600 font-semibold rounded-md hover:scale-110 hover:ease-in duration-300"
               onClick={() => {
                 setIsOpenModal(false);
                 navigate('/');
@@ -87,12 +94,7 @@ export default function Modal({
             >
               취 소
             </button>
-            <button
-              type="submit"
-              className="px-5 py-1 bg-gray-200 text-green-600 font-semibold rounded-md hover:scale-110 hover:ease-in duration-300"
-            >
-              수 정
-            </button>
+            <SubmitBtn title="수 정" />
           </div>
         </form>
       </div>
