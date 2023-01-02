@@ -3,7 +3,6 @@ import AddToDo from '../components/AddToDo';
 import ToDo from '../components/ToDo';
 import api from '../api/customAxios';
 import Loading from '../components/Loading';
-import { useEffect } from 'react';
 
 export type TodoType = {
   title: string;
@@ -14,11 +13,7 @@ export type TodoType = {
 };
 
 export default function TodoList() {
-  const {
-    isLoading,
-    data: todoList,
-    refetch,
-  } = useQuery(
+  const { isLoading, data: todoList } = useQuery(
     ['todolist'],
     async () => {
       const todoList = await api.get('/todos');

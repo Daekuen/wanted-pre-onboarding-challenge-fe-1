@@ -42,7 +42,12 @@ export default function Modal({
         setIsOpenModal(false);
       }}
     >
-      <div className="absolute w-1/3 h-2/5 bg-green-600 rounded-xl p-8">
+      <div
+        className="absolute w-1/2 h-2/5 bg-green-600 rounded-xl px-16 py-10"
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+          e.stopPropagation();
+        }}
+      >
         <div className="flex justify-center items-center text-4xl font-bold mb-10">
           <p>수정하기</p>
         </div>

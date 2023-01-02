@@ -5,7 +5,6 @@ import { MdEdit } from 'react-icons/md';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { TodoType } from '../pages/TodoList';
 import api from '../api/customAxios';
-import { QueryClient } from 'react-query';
 import { useQueryClient } from '@tanstack/react-query';
 import Modal from './Modal';
 
