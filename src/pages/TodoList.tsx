@@ -28,13 +28,13 @@ export default function TodoList() {
       <div className="flex text-6xl py-2 font-bold justify-center border-solid border-b-2 border-gray-200 absolute top-20">
         <h1>Todo List</h1>
       </div>
-      <Suspense fallback={<Loading />}>
-        <ul className="flex flex-col w-2/3 justify-center">
+      <ul className="flex flex-col w-2/3 justify-center">
+        <Suspense fallback={<Loading />}>
           {todoList.data.map((todo: TodoType) => (
             <ToDo key={todo.id} todo={todo} />
           ))}
-        </ul>
-      </Suspense>
+        </Suspense>
+      </ul>
       <AddToDo />
     </section>
   );

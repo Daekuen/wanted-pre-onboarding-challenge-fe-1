@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useLayoutEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Header from './components/Header';
 import Main from './pages/Main';
 import TodoList from './pages/TodoList';
+import Loading from './components/Loading';
 
 const queryClient = new QueryClient();
 
 function App() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!localStorage.getItem('token')) return;
 
     setIsLogin(true);
-  }, [isLogin]);
+  }, []);
 
   console.log(isLogin);
   return (
@@ -23,9 +24,11 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-          <Routes>
-            <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
-          </Routes>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
