@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/customAxios';
 import { useQueryClient } from '@tanstack/react-query';
+import SubmitBtn from './SubmitBtn';
 
 interface ModalProps {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -84,7 +85,8 @@ export default function Modal({
           </div>
           <div className="flex items-center justify-center mt-5">
             <button
-              className="px-5 py-1 bg-gray-200 text-green-600 font-semibold mr-5 rounded-md hover:scale-110 hover:ease-in duration-300"
+              type="button"
+              className="py-1 px-2 w-24 bg-gray-200 text-green-600 font-semibold rounded-md hover:scale-110 hover:ease-in duration-300"
               onClick={() => {
                 setIsOpenModal(false);
                 navigate('/');
@@ -92,12 +94,7 @@ export default function Modal({
             >
               취 소
             </button>
-            <button
-              type="submit"
-              className="px-5 py-1 bg-gray-200 text-green-600 font-semibold rounded-md hover:scale-110 hover:ease-in duration-300"
-            >
-              수 정
-            </button>
+            <SubmitBtn title="수 정" />
           </div>
         </form>
       </div>

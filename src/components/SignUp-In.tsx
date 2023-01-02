@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../api/customAxios';
 import { useNavigate } from 'react-router-dom';
+import SubmitBtn from './SubmitBtn';
 
 interface SignUpInProps {
   title: string;
@@ -127,12 +128,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
           </div>
           {/* submit btn */}
           <div className="mt-5 flex items-end justify-end">
-            <button
-              type="submit"
-              className="text-lg font-semibold py-1 px-2 text-green-600 bg-gray-200 rounded-lg"
-            >
-              {title}
-            </button>
+            <SubmitBtn title={title} />
           </div>
         </form>
       </div>

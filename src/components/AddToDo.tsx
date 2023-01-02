@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import api from '../api/customAxios';
+import SubmitBtn from './SubmitBtn';
 
 type Todo = {
   title: string;
@@ -61,12 +62,7 @@ export default function AddToDo() {
           placeholder="CONTENT를 입력해주세요..."
           className="mb-5 rounded-md py-2 px-4 w-1/2 text-base text-black"
         />
-        <button
-          type="submit"
-          className="text-lg w-32 font-semibold py-1 px-2 text-green-600 bg-gray-200 rounded-lg"
-        >
-          추가하기
-        </button>
+        <SubmitBtn title="추가하기" />
       </form>
     </>
   );
