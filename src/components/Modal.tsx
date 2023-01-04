@@ -31,6 +31,7 @@ export default function Modal({
       queryClient.invalidateQueries(['todolist']);
       setIsOpenModal(false);
       alert('수정되었습니다.');
+      navigate(`/todo/${id}`, { state: { content: editContent } });
     } catch (error) {
       console.log(error);
     }

@@ -14,20 +14,17 @@ interface ToDoProps {
 
 export default function ToDo({ todo }: ToDoProps) {
   const queryClient = useQueryClient();
-  const { title, content, id } = todo;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const navigate = useNavigate();
-  const contentRef = useRef<HTMLDivElement | null>(null);
+  const { title, content, id } = todo;
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const handleClick = () => {
-    setIsOpen(!isOpen);
-    if (!isOpen) navigate(`/${id}`);
-    if (isOpen) navigate('/');
+    navigate(`/todo/${id}`, { state: { content } });
   };
 
   const handleDelete = async () => {
     await api.delete(`todos/${id}`);
     queryClient.invalidateQueries(['todolist']);
+    navigate(`/todo/${id}`);
   };
   return (
     <>
@@ -65,22 +62,6 @@ export default function ToDo({ todo }: ToDoProps) {
           id={id}
         />
       )}
-      <Routes>
-        <Route
-          path="/:id"
-          element={
-            isOpen && (
-              <div
-                className="bg-gray-200 text-green-700 p-3 h-28 rounded-b-md"
-                ref={contentRef}
-              >
-                <p className="font-bold">CONTENT</p>
-                <p className="text-lg">{content}</p>
-              </div>
-            )
-          }
-        />
-      </Routes>
     </>
   );
 }

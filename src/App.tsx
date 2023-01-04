@@ -27,6 +27,7 @@ function App() {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
+              <Route path="/todo/:id" element={<TodoList />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
