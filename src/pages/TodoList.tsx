@@ -4,6 +4,7 @@ import ToDo from '../components/ToDo';
 import api from '../api/customAxios';
 import Loading from '../components/Loading';
 import { Suspense } from 'react';
+import ContentSection from '../components/ContentSection';
 
 export type TodoType = {
   title: string;
@@ -24,18 +25,23 @@ export default function TodoList() {
   );
 
   return (
-    <section className="flex flex-col max-w-2xl h-full items-center justify-center m-auto bg-green-600 text-gray-200 mt-10 rounded-md relative">
-      <div className="flex text-6xl py-2 font-bold justify-center border-solid border-b-2 border-gray-200 absolute top-20">
-        <h1>Todo List</h1>
-      </div>
-      <ul className="flex flex-col w-2/3 justify-center">
-        <Suspense fallback={<Loading />}>
-          {todoList.data.map((todo: TodoType) => (
-            <ToDo key={todo.id} todo={todo} />
-          ))}
-        </Suspense>
-      </ul>
+    <>
+      <section className="flex flex-col max-w-2xl h-[700px] max-h-fit items-center justify-center m-auto bg-green-600 text-gray-200 mt-10 rounded-t-md relative">
+        <div className="flex text-6xl py-2 font-bold justify-center border-solid border-b-2 border-gray-200 absolute top-10">
+          <h1>Todo List</h1>
+        </div>
+        <div className="flex w-full p-4 h-[400px] mt-2">
+          <div className="w-1/2 h-[500px] overflow-y-auto">
+            <Suspense fallback={<Loading />}>
+              {todoList.data.map((todo: TodoType) => (
+                <ToDo key={todo.id} todo={todo} />
+              ))}
+            </Suspense>
+          </div>
+          <ContentSection />
+        </div>
+      </section>
       <AddToDo />
-    </section>
+    </>
   );
 }
