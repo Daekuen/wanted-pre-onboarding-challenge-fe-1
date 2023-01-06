@@ -40,30 +40,28 @@ export default function AddToDo() {
     }
   };
   return (
-    <>
-      <form
-        action="submit"
-        className="flex flex-col items-center justify-center w-full absolute bottom-0 py-6 bg-green-700 rounded-b-md"
-        onSubmit={handleSubmit}
-      >
-        <input
-          type="text"
-          name="title"
-          value={todo.title}
-          onChange={handleChange}
-          placeholder="TODO를 입력해주세요..."
-          className="mb-2 rounded-md py-2 px-4 w-1/2 text-base text-black"
-        />
-        <input
-          type="text"
-          name="content"
-          value={todo.content}
-          onChange={handleChange}
-          placeholder="CONTENT를 입력해주세요..."
-          className="mb-5 rounded-md py-2 px-4 w-1/2 text-base text-black"
-        />
-        <SubmitBtn title="추가하기" />
-      </form>
-    </>
+    <form
+      action="submit"
+      className="flex flex-col items-center w-full max-w-2xl py-6 bg-green-700 rounded-b-md m-auto"
+      onSubmit={handleSubmit}
+    >
+      <input
+        type="text"
+        name="title"
+        value={todo.title}
+        onChange={handleChange}
+        placeholder="TODO를 입력해주세요..."
+        className="mb-2 rounded-md py-2 px-4 w-1/2 text-base text-black"
+      />
+      <input
+        type="text"
+        name="content"
+        value={todo.content}
+        onChange={handleChange}
+        placeholder="CONTENT를 입력해주세요..."
+        className="mb-5 rounded-md py-2 px-4 w-1/2 text-base text-black"
+      />
+      <SubmitBtn title="추가하기" />
+    </form>
   );
 }

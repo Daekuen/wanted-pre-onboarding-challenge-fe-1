@@ -28,7 +28,7 @@ export default function ToDo({ todo }: ToDoProps) {
   };
   return (
     <>
-      <li className="flex justify-between items-center py-3 px-4 my-1 text-gray-200">
+      <div className="flex justify-between items-center py-3 px-4 my-1 text-gray-200">
         <div
           className="flex items-center text-2xl font-semibold"
           onClick={handleClick}
@@ -53,7 +53,7 @@ export default function ToDo({ todo }: ToDoProps) {
             </button>
           </span>
         </div>
-      </li>
+      </div>
       {isOpenModal && (
         <Modal
           setIsOpenModal={setIsOpenModal}
