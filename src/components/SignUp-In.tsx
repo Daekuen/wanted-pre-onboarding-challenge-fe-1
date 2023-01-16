@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import api from '../api/customAxios';
 import { useNavigate } from 'react-router-dom';
 import SubmitBtn from './SubmitBtn';
+import { UserInfo } from '../types/user';
+import { AuthAPI } from '../api/auth';
 
 interface SignUpInProps {
   title: string;
   type: string;
 }
-
-type UserInfo = {
-  email: string;
-  password: string;
-};
 
 export default function SignUpIn({ title, type }: SignUpInProps) {
   const navigate = useNavigate();
@@ -35,7 +31,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
       return;
 
     try {
-      await api.post('/users/create', userInfo);
+      await AuthAPI.signUp(userInfo);
       setUserInfo({ email: '', password: '' });
     } catch (error) {
       console.log(error);
@@ -48,7 +44,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
     if (!userInfo.email || !userInfo.password) return;
 
     try {
-      const login = await api.post('/users/login', userInfo);
+      const login = await AuthAPI.signIn(userInfo);
       localStorage.setItem('token', login.data.token);
       setUserInfo({ email: '', password: '' });
       navigate('/');
