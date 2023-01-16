@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import AuthAPI from '../api/auth';
+import useLogin from '../hooks/mutation/auth/useLogin';
+import { UserInfo } from '../types/user';
 import { useNavigate } from 'react-router-dom';
 import SubmitBtn from './SubmitBtn';
-import { UserInfo } from '../types/user';
-import { AuthAPI } from '../api/auth';
 
 interface SignUpInProps {
   title: string;
@@ -10,7 +11,7 @@ interface SignUpInProps {
 }
 
 export default function SignUpIn({ title, type }: SignUpInProps) {
-  const navigate = useNavigate();
+  const { mutate: loginMutate } = useLogin();
   const [userInfo, setUserInfo] = useState<UserInfo>({
     email: '',
     password: '',
@@ -38,22 +39,22 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
     }
   };
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
-    if (!userInfo.email || !userInfo.password) return;
+  //   if (!userInfo.email || !userInfo.password) return;
 
-    try {
-      const login = await AuthAPI.signIn(userInfo);
-      localStorage.setItem('token', login.data.token);
-      setUserInfo({ email: '', password: '' });
-      navigate('/');
-      window.location.reload();
-    } catch (error) {
-      alert('아이디와 비밀번호를 다시 확인해 주세요.');
-      console.log(error);
-    }
-  };
+  //   try {
+  //     const login = await AuthAPI.signIn(userInfo);
+  //     localStorage.setItem('token', login.data.token);
+  //     setUserInfo({ email: '', password: '' });
+  //     navigate('/');
+  //     window.location.reload();
+  //   } catch (error) {
+  //     alert('아이디와 비밀번호를 다시 확인해 주세요.');
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -64,7 +65,11 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
         <form
           action="submit"
           className="text-black"
-          onSubmit={type === 'create' ? handleSignUp : handleLogin}
+          // onSubmit={type === 'create' ? handleSignUp : handleLogin}
+          onSubmit={(e) => {
+            e.preventDefault();
+            loginMutate(userInfo);
+          }}
         >
           {/* email */}
           <div className="flex flex-col mb-10 items-center justify-center">

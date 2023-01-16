@@ -10,7 +10,7 @@ import Loading from './components/Loading';
 const queryClient = new QueryClient();
 
 function App() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   useLayoutEffect(() => {
     if (!localStorage.getItem('token')) return;
