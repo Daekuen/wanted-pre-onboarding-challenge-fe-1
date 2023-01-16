@@ -61,7 +61,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
       <div className="flex items-center justify-center text-3xl font-medium mb-20 py-4 border-solid border border-gray-200 rounded-md">
         <p>{title}</p>
       </div>
-      <div className="flex justify-center h-1/3">
+      <div className="flex justify-center">
         <form
           action="submit"
           className="text-black"
@@ -128,9 +128,7 @@ export default function SignUpIn({ title, type }: SignUpInProps) {
             </div>
           </div>
           {/* submit btn */}
-          <div className="mt-5 flex items-end justify-end">
-            <SubmitBtn title={title} />
-          </div>
+          <SubmitBtn title={title} />
         </form>
       </div>
     </div>
