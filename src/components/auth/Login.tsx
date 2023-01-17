@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useLogin from '../../hooks/mutation/auth/useLogin';
 import { UserInfo } from '../../types/user';
 import LoginView from './view/LoginView';
