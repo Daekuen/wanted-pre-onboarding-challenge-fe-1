@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useLogin from '../../hooks/mutation/auth/useLogin';
 import { UserInfo } from '../../types/user';
+import { emailValidate, passwordValidate } from '../../utils/validate';
 import LoginView from './view/LoginView';
 
 export default function Login() {
@@ -11,6 +12,8 @@ export default function Login() {
   });
   const isNotEnterEmail = userInfo.email.length === 0;
   const isNotEnterPassword = userInfo.password.length === 0;
+  const isEmailValidate = emailValidate(userInfo.email);
+  const isPasswordValidate = passwordValidate(userInfo.password);
 
   const loginProps = {
     userInfo,
@@ -24,6 +27,8 @@ export default function Login() {
     },
     isNotEnterEmail,
     isNotEnterPassword,
+    isEmailValidate,
+    isPasswordValidate,
   };
 
   console.log(userInfo);

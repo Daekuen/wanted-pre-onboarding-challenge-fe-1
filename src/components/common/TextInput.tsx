@@ -2,6 +2,7 @@ interface InputProps {
   type: string;
   category: string;
   value: string;
+  marginBottom: number;
   onUserInfoChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -9,10 +10,13 @@ export default function TextInput({
   type,
   category,
   value,
+  marginBottom,
   onUserInfoChange,
 }: InputProps) {
+  const containerCSS = `flex flex-col items-center justify-center mb-${marginBottom}`;
+
   return (
-    <div className="flex flex-col mb-10 items-center justify-center">
+    <div className={containerCSS}>
       <div className="flex">
         <label
           htmlFor={category}

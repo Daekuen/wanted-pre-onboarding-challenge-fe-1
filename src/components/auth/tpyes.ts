@@ -6,4 +6,6 @@ export interface LoginProps {
   onLoginSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isNotEnterEmail: boolean;
   isNotEnterPassword: boolean;
+  isEmailValidate: boolean;
+  isPasswordValidate: boolean;
 }
