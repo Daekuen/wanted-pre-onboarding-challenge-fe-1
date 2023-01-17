@@ -1,52 +1,39 @@
-import React, { useState } from 'react';
-import SubmitBtn from '../../SubmitBtn';
-import { UserInfo } from '../../../types/user';
-import useLogin from '../../../hooks/mutation/auth/useLogin';
+import Wrapper from '../../common/Wrapper';
+import AuthTitle from '../components/AuthTitle';
+import FormWrapper from '../components/FormWrapper';
 import TextInput from '../../common/TextInput';
-import AuthTitle from '../AuthTitle';
+import SubmitBtn from '../../SubmitBtn';
+import { LoginProps } from '../tpyes';
 
-export default function LoginView() {
-  const { mutate: loginMutate } = useLogin();
-  const [userInfo, setUserInfo] = useState<UserInfo>({
-    email: '',
-    password: '',
-  });
-
-  const onUserInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserInfo({ ...userInfo, [name]: value });
-  };
-
+export default function LoginView({
+  userInfo,
+  onUserInfoChange,
+  onLoginSubmit,
+  isNotEnterEmail,
+  isNotEnterPassword,
+}: LoginProps) {
   return (
-    <div>
+    <Wrapper>
       <AuthTitle title="LOGIN" />
-      <div className="flex justify-center">
-        <form
-          action="submit"
-          className="text-black"
-          onSubmit={(e) => {
-            e.preventDefault();
-            loginMutate(userInfo);
-          }}
-        >
-          {/* email */}
-          <TextInput
-            type="text"
-            category="email"
-            value={userInfo.email}
-            onUserInfoChange={onUserInfoChange}
-          />
-          {/* password */}
-          <TextInput
-            type="password"
-            category="password"
-            value={userInfo.password}
-            onUserInfoChange={onUserInfoChange}
-          />
-          {/* submit btn */}
-          <SubmitBtn title="LOGIN" />
-        </form>
-      </div>
-    </div>
+      <FormWrapper onLoginSubmit={onLoginSubmit}>
+        <TextInput
+          type="text"
+          category="email"
+          value={userInfo.email}
+          onUserInfoChange={onUserInfoChange}
+        />
+        <TextInput
+          type="password"
+          category="password"
+          value={userInfo.password}
+          onUserInfoChange={onUserInfoChange}
+        />
+        <SubmitBtn
+          isNotEnterEmail={isNotEnterEmail}
+          isNotEnterPassword={isNotEnterPassword}
+          title="LOGIN"
+        />
+      </FormWrapper>
+    </Wrapper>
   );
 }

@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Main from './pages/Main';
 import TodoList from './pages/TodoList';
 import Loading from './components/Loading';
+import Login from './components/auth/Login';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
+              {/* <Route path="/auth/login" element={<Login />} /> */}
               <Route path="/todo/:id" element={<TodoList />} />
             </Routes>
           </Suspense>
