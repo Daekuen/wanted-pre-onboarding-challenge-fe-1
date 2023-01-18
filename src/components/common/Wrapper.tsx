@@ -1,5 +1,5 @@
 import { ChildrenProps } from '../../types/children';
 
-export default function Wrapper({ children }: ChildrenProps) {
-  return <div>{children}</div>;
+export default function Wrapper({ children, WrapperStyle }: ChildrenProps) {
+  return <div className={WrapperStyle}>{children}</div>;
 }
