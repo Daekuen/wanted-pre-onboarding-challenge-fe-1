@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import Login from '../components/auth/Login';
 import SignUp from '../components/auth/SignUp';
 import MainUI from '../components/MainUI';
-import SignUpIn from '../components/SignUp-In';
 
 export default function Main() {
   return (

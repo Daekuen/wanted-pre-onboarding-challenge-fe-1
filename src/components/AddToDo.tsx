@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import api from '../api/customAxios';
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from './common/SubmitBtn';
 
 type Todo = {
   title: string;

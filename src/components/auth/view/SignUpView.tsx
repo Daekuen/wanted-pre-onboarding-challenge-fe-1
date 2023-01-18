@@ -3,7 +3,7 @@ import AuthTitle from '../components/AuthTitle';
 import FormWrapper from '../components/FormWrapper';
 import TextInput from '../../common/TextInput';
 import TextFiled from '../components/TextFiled';
-import SubmitBtn from '../../SubmitBtn';
+import SubmitBtn from '../../common/SubmitBtn';
 import { SignUpProps } from '../tpyes';
 
 export default function SignUpView({
