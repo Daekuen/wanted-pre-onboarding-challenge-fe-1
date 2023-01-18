@@ -4,21 +4,21 @@ import FormWrapper from '../components/FormWrapper';
 import TextInput from '../../common/TextInput';
 import TextFiled from '../components/TextFiled';
 import SubmitBtn from '../../SubmitBtn';
-import { LoginProps } from '../tpyes';
+import { SignUpProps } from '../tpyes';
 
-export default function LoginView({
+export default function SignUpView({
   userInfo,
   onUserInfoChange,
-  onLoginSubmit,
+  onSignUpSubmit,
   isNotEnterEmail,
   isNotEnterPassword,
   isEmailValidate,
   isPasswordValidate,
-}: LoginProps) {
+}: SignUpProps) {
   return (
     <Wrapper>
-      <AuthTitle title="LOGIN" />
-      <FormWrapper onSubmit={onLoginSubmit}>
+      <AuthTitle title="SIGN UP" />
+      <FormWrapper onSubmit={onSignUpSubmit}>
         <TextInput
           type="text"
           category="email"
@@ -52,7 +52,7 @@ export default function LoginView({
         <SubmitBtn
           isNotEnterEmail={isNotEnterEmail}
           isNotEnterPassword={isNotEnterPassword}
-          title="LOGIN"
+          title="SIGN UP"
         />
       </FormWrapper>
     </Wrapper>

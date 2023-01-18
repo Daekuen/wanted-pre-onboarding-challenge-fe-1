@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from '../components/auth/Login';
+import SignUp from '../components/auth/SignUp';
 import MainUI from '../components/MainUI';
 import SignUpIn from '../components/SignUp-In';
 
@@ -11,10 +12,7 @@ export default function Main() {
       </div>
       <Routes>
         <Route path="/" element={<MainUI />} />
-        <Route
-          path="/auth/signup"
-          element={<SignUpIn title="SIGN UP" type="create" />}
-        />
+        <Route path="/auth/signup" element={<SignUp />} />
         <Route path="/auth/login" element={<Login />} />
       </Routes>
     </section>
