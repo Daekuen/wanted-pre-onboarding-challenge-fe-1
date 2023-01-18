@@ -4,7 +4,7 @@ import FormWrapper from '../components/FormWrapper';
 import TextInput from '../../common/TextInput';
 import TextFiled from '../components/TextFiled';
 import SubmitBtn from '../../common/SubmitBtn';
-import { SignUpProps } from '../tpyes';
+import { SignUpProps } from '../types';
 import SectionWrapper from '../../common/SectionWrapper';
 
 export default function SignUpView({

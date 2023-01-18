@@ -4,7 +4,7 @@ import FormWrapper from '../components/FormWrapper';
 import TextInput from '../../common/TextInput';
 import TextFiled from '../components/TextFiled';
 import SubmitBtn from '../../common/SubmitBtn';
-import { LoginProps } from '../tpyes';
+import { LoginProps } from '../types';
 import SectionWrapper from '../../common/SectionWrapper';
 
 export default function LoginView({
