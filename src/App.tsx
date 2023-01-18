@@ -8,6 +8,7 @@ import TodoList from './pages/TodoList';
 import Loading from './components/Loading';
 import Login from './components/auth/Login';
 import SignUp from './components/auth/SignUp';
+import AuthValidate from './components/common/AuthValidate';
 
 const queryClient = new QueryClient();
 
@@ -29,10 +30,25 @@ function App() {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/auth/signup" element={<SignUp />} />
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="/todos" element={<TodoList />} />
-              <Route path="/todos/:id" element={<TodoList />} />
+              <Route
+                path="/auth/signup"
+                element={
+                  <AuthValidate>
+                    <SignUp />
+                  </AuthValidate>
+                }
+              />
+              <Route
+                path="/auth/login"
+                element={
+                  <AuthValidate>
+                    <Login />
+                  </AuthValidate>
+                }
+              />
+              <Route path="/todos" element={<TodoList />}>
+                <Route path="id" element={<TodoList />} />
+              </Route>
             </Routes>
           </Suspense>
         </BrowserRouter>

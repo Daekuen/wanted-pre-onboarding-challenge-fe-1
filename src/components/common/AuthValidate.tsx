@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export default function AuthValidate({ children }: ChildrenProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/signUp';
+  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/signup';
 
   useEffect(() => {
     const hasToken = !!localStorage.getItem('token');
