@@ -1,5 +1,5 @@
-import React from 'react';
+import { ChildrenProps } from '../../types/children';
 
-export default function Wrapper({ children }: { children: React.ReactNode }) {
+export default function Wrapper({ children }: ChildrenProps) {
   return <div>{children}</div>;
 }

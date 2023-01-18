@@ -7,6 +7,7 @@ import Main from './pages/Main';
 import TodoList from './pages/TodoList';
 import Loading from './components/Loading';
 import Login from './components/auth/Login';
+import SignUp from './components/auth/SignUp';
 
 const queryClient = new QueryClient();
 
@@ -27,9 +28,11 @@ function App() {
           <Header isLogin={isLogin} setIsLogin={setIsLogin} />
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
-              {/* <Route path="/auth/login" element={<Login />} /> */}
-              <Route path="/todo/:id" element={<TodoList />} />
+              <Route path="/" element={<Main />} />
+              <Route path="/auth/signup" element={<SignUp />} />
+              <Route path="/auth/login" element={<Login />} />
+              <Route path="/todos" element={<TodoList />} />
+              <Route path="/todos/:id" element={<TodoList />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

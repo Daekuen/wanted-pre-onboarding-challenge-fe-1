@@ -10,7 +10,7 @@ export default function useSignUp() {
     onSuccess: (res: AxiosResponse<AuthResponse>) => {
       const token = res.data.token;
       localStorage.setItem('token', token);
-      navigate('/', { replace: true });
+      navigate('/auth/login', { replace: true });
     },
   });
 }
