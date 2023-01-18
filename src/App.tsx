@@ -29,7 +29,14 @@ function App() {
           <Header isLogin={isLogin} setIsLogin={setIsLogin} />
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route
+                path="/"
+                element={
+                  <AuthValidate>
+                    <Main />
+                  </AuthValidate>
+                }
+              />
               <Route
                 path="/auth/signup"
                 element={
