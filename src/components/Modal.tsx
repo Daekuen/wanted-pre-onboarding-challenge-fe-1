@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/customAxios';
 import { useQueryClient } from '@tanstack/react-query';
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from './common/SubmitBtn';
 
 interface ModalProps {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;

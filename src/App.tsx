@@ -2,15 +2,18 @@ import React, { Suspense, useLayoutEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Header from './components/Header';
 import Main from './pages/Main';
 import TodoList from './pages/TodoList';
 import Loading from './components/Loading';
+import Login from './components/auth/Login';
+import SignUp from './components/auth/SignUp';
+import AuthValidate from './components/common/AuthValidate';
+import Header from './components/header/Header';
 
 const queryClient = new QueryClient();
 
 function App() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   useLayoutEffect(() => {
     if (!localStorage.getItem('token')) return;
@@ -23,11 +26,36 @@ function App() {
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+          <Header />
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/*" element={isLogin ? <TodoList /> : <Main />} />
-              <Route path="/todo/:id" element={<TodoList />} />
+              <Route
+                path="/"
+                element={
+                  <AuthValidate>
+                    <Main />
+                  </AuthValidate>
+                }
+              />
+              <Route
+                path="/auth/signup"
+                element={
+                  <AuthValidate>
+                    <SignUp />
+                  </AuthValidate>
+                }
+              />
+              <Route
+                path="/auth/login"
+                element={
+                  <AuthValidate>
+                    <Login />
+                  </AuthValidate>
+                }
+              />
+              <Route path="/todos" element={<TodoList />}>
+                <Route path="id" element={<TodoList />} />
+              </Route>
             </Routes>
           </Suspense>
         </BrowserRouter>
